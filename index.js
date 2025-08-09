@@ -19,7 +19,7 @@ app.post("/generate", async (req, res) => {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/images",
       {
-        model: "gryphe/mythomax-l2-13b", // tu apna model change kar sakta
+        model: "stability-ai/stable-diffusion-xl", // tu apna model change kar sakta
         prompt: prompt,
         size: `${width}x${height}`
       },
