@@ -19,6 +19,7 @@ app.post("/generate", async (req, res) => {
     const response = await axios.post(
   "https://openrouter.ai/api/v1/images",
   {
+    model: "moonshotai/kimi-vl-a3b-thinking:free",
     prompt: prompt,
     width: width,
     height: height
