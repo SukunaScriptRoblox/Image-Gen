@@ -17,21 +17,23 @@ app.post("/generate", async (req, res) => {
     const { prompt, width = 512, height = 512 } = req.body;
 
     const response = await axios.post(
-  "https://openrouter.ai/api/v1/images",
-  {
-    model: "lstein/stable-diffusion", // free model
-    prompt: prompt,
-    size: `${width}x${height}`
-  },
-  {
-    headers: {
-      Authorization: `Bearer ${process.env.OPENROUTER_KEY}`,
-      "Content-Type": "application/json"
-    }
-  }
-);
+      "https://openrouter.ai/api/v1/images",
+      {
+        model: "stability-ai/sd-turbo",
+        prompt: prompt,
+        width: width,
+        height: height
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.OPENROUTER_KEY}`,
+          "Content-Type": "application/json"
+        }
+      }
+    );
 
     res.json({ url: response.data.data[0].url });
+
   } catch (err) {
     console.error(err.response?.data || err.message);
     res.status(500).json({ error: "Image generation failed" });
